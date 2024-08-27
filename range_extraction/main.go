@@ -36,7 +36,7 @@ func appendBuffer(number int, result []string, buffer []int) ([]string, []int) {
     last_number := get_last_element(buffer)
     if (len(buffer) >= 3) {
       result = append(result, strconv.Itoa(buffer[0]) + "-" + strconv.Itoa(last_number))
-      buffer = []int{number}
+      buffer = []int{numbere
 
       return result, buffer
     }

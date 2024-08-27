@@ -4,9 +4,6 @@ import (
   "strings"
 )
 
-func main() {
-
-}
 
 // Takes dash or underscore delimited words and transforms them into camelCasing
 // First word should only be capatalised if the original word was
@@ -37,4 +34,9 @@ func title(s string) string {
 
 func split(r rune) bool {
   return r == '_' || r == '-'
+}
+
+
+func main() {
+
 }
