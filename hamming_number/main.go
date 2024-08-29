@@ -1,45 +1,58 @@
 package main
 // https://www.codewars.com/kata/526d84b98f428f14a60008da/
 
-import (
-  "math"
-  "fmt"
-)
 
 func main() {
 }
 
 func Hammer(n int) uint {
-
+  if(n == 1) {
+    return 1
+  }
   
-  fmt.Printf("2^%v 3^%v 5^%v \n",
-  math.Pow(float64(2), float64(n/2)),
-  math.Pow(float64(3), float64(n/3)),
-  math.Pow(float64(5), float64(n/5)),
-  )
+  var i int = 0
+  var j int = 0
+  var k int = 0
 
-  powersOf := []int{2,3,5}
+  ham_num := []uint{1}
 
-  var result float64 = 1
-  for _, powerOf := range powersOf {
-    var divided int = 0
-    
-    if (n % powerOf == 0) {
-      divided = n / powerOf
+  for m:= 0; m < n -1; m++ {
+    var next_ham_i uint = 2 * ham_num[i]
+    var next_ham_j uint = 3 * ham_num[j]
+    var next_ham_k uint = 5 * ham_num[k]
+
+    minimum := min(
+      next_ham_i,
+      next_ham_j,
+      next_ham_k,
+    )
+
+    ham_num = append(ham_num, minimum)
+
+    if(next_ham_i == minimum) {
+      i++
     }
 
-    fmt.Printf("div: %v\n", divided)
-    // n -= divided
-    res := math.Pow(float64(powerOf), float64(divided))
-
-    fmt.Printf("res: %v\n", res)
-
-    if(res > 1) {
-
-    n -= int(res)
+    if(next_ham_j == minimum) {
+      j++
     }
-    result *= res
+
+    if(next_ham_k == minimum) {
+      k++
+    }
   }
 
-return uint(result);
+  return uint(ham_num[n-1])
+}
+
+func min(a,b,c uint) uint {
+  if(a < b && a < c) {
+    return a
+  }
+
+  if(b < c) {
+    return b
+  }
+
+  return c
 }
